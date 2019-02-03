@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Franchesca's Psychic Game</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+</head>
+<style>
+h4 {
+    font-family: Arial, Helvetica, sans-serif;
+    color: green;
+    font-size: 20px;
+    font-weight: bold;
+    }
+h1{
+    color: green;
+    font-family: fantasy;
+    
+}
+h5{
+    color: green;
+    font-family: fantasy;
+   
+}
+
+</style>
+<body style="background-image: url(question.jpg)">
+
+    <div class= "container-fluid" style = "background-color: black; opacity: 10;">
+    <div class= "text-left">
+        <h1> The Psychic Game</h1>
+        <br>
+        <h5> Guess what letter I'm thinking of</h5>
+     </div>
+    </div>
+        <hr>
+
+        <div id="game">
+            <h4>Wins:</h4>
+            <br>
+            <h4>Losses:</h4>
+            <br>
+            <h4>Guess Left:</h4>
+            <br>
+            <h4>Your Guesses so far:</h4>
+            <br>
+         </div>
+
+<script>
+
+var myLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",];
+
+var wins = 0;
+var losses = 0;
+var numbGuesses = 10;
+var guessSelection = [];
+
+document.onkeyup = function(event) {
+
+    var userGuess = event.key;
+
+    var computerGuess = myLetters[Math.floor(Math.random() * myLetters.length)];
+
+    var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",];
+    
+
+   if (alphabet.indexOf(userGuess) > -1) {
+
+       if (userGuess === computerGuess) {
+           wins++;
+           numbGuesses = 8;
+           guessSelection = [];
+       }
+
+       if (userGuess != computerGuess) {
+           numbGuesses --;
+           guessSelection.push(userGuess);
+       }
+
+       if (numbGuesses === 0) {
+
+       numbGuesses = 8;
+       losses ++;
+       guessSelection = [];
+
+       
+   }
+   var html = 
+   "<h4>Wins: " + wins + "</h4>" +
+   "<h4>Losses: " + losses + "</h4>" +
+   "<h4>Guess Left: " + numbGuesses + "</h4>" +
+   "<h4>Your Guesses so far: " + guessSelection.join(", ") + "</h4>";
+
+   document.querySelector("#game").innerHTML = html; 
+   }
+};
+
+</script>
+
+ <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+ </body>
+</html>
